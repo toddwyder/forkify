@@ -11,7 +11,7 @@ export default class Search {
     try {
         const res = await axios(`https://api.edamam.com/search?q=${this.query}&app_id=${apiID}&app_key=${apiKey}`);
         this.result = res.data.hits;
-        console.log(this.result);
+        //console.log(this.result);
     } catch (error) {
         alert(error);
     }
