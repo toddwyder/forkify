@@ -1,18 +1,8 @@
-import axios from 'axios';
+import Search from './models/search';
 
-async function getResults (query) {
-    const apiID = 'd26d84fc';
-    const apiKey = '9e62db7f574bd8b3f3f8cd64b869ca06';
-    try {
-        const res = await axios(`https://api.edamam.com/search?q=${query}&app_id=${apiID}&app_key=${apiKey}`);
-        const recipes = res.data.hits;
-        console.log(recipes);
-    } catch(error) {
-        alert(error);
-    }
-}
-
-getResults('tomato pasta');
+const search = new Search ('pizza');
+console.log(search);
+search.getResults();
 
 
 
