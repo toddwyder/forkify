@@ -28,7 +28,8 @@ export const limitRecipeTitle = (title, limit = 17) => {
 }
 
 const renderRecipe = hit => {
-    const markup = `
+  console.log(hit);  
+  const markup = `
         <li>
             <a class="results__link" href="#${hit.recipe.uri}">
                 <figure class="results__fig">

@@ -33,11 +33,13 @@ const controlSearch = async () => {
     }
 }
 
+// User clicked on search
 elements.searchForm.addEventListener('submit', e => {
     e.preventDefault();
     controlSearch();
 });
 
+// User clicked on previous or next search results button
 elements.searchResPages.addEventListener('click', e => {
     const btn = e.target.closest('.btn-inline');
     if (btn) {
@@ -48,7 +50,16 @@ elements.searchResPages.addEventListener('click', e => {
     
 });
 
+/**
+ *  RECIPE CONTROLLER    
+ */
+const controlRecipe = () => {
+    let id = window.location.hash.slice(1);
+    console.log(id);
+};
 
+
+ window.addEventListener('hashchange', controlRecipe);
 
 
 // edamam app ID d26d84fc
