@@ -9,7 +9,7 @@ export default class Search {
     const apiID = 'd26d84fc';
     const apiKey = '9e62db7f574bd8b3f3f8cd64b869ca06';
     try {
-        const res = await axios(`https://api.edamam.com/search?q=${this.query}&app_id=${apiID}&app_key=${apiKey}`);
+        const res = await axios(`https://api.edamam.com/search?q=${this.query}&app_id=${apiID}&app_key=${apiKey}&to=30`);
         this.result = res.data.hits;
         //console.log(this.result);
     } catch (error) {
