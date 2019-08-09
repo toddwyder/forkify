@@ -56,6 +56,25 @@ elements.searchResPages.addEventListener('click', e => {
 const controlRecipe = () => {
     let id = window.location.hash.slice(1);
     console.log(id);
+        
+ 
+ 
+ 
+ 
+    if (id) {
+        // Prepare UI for changes
+
+
+        // Get recipe data
+        state.recipe = state.search.result.filter(result => {
+            return id === result.recipe.uri;
+        });
+        console.log(state.recipe);
+
+        // Calculate servings and time
+
+        // Render Recipe
+    }
 };
 
 
