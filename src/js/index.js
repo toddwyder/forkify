@@ -1,6 +1,8 @@
 import Search from './models/search';
 import * as searchView from './views/searchView';
+import * as recipeView from './views/searchView';
 import { elements, renderLoader, clearLoader } from './views/base'; 
+import Recipe from './models/recipe';
 
 /* Global state of the app
 * - Search object
@@ -13,7 +15,7 @@ const state ={};
 const controlSearch = async () => {
     // 1) Get query from view
     const query = searchView.getinput();
-    console.log(query);
+    // console.log(query);
 
     if (query) {
         //2)  New search object and add to state
@@ -62,23 +64,28 @@ const controlRecipe = () => {
     let id = window.location.hash.slice(1);
     console.log(id);
         
- 
- 
- 
- 
     if (id) {
         // Prepare UI for changes
 
 
-        // Get recipe data
-        state.recipe = state.search.result.filter(result => {
+        // Get recipe data and parse ingredients
+        
+       let recID = state.search.result.filter(result => {
             return id === result.recipe.uri;
-        });
+       
+           
+            // state.recipe.parseIngredients();
+        })
+        state.recipe = new Recipe(recID); 
+        state.recipe.parseIngredients();
+        // console.log(state.recipe);
+        // console.log(state.recipe[0].recipe.source); 
+         ;
         
         // Calculate servings and time
 
         // Render Recipe
-        console.log(state.recipe);
+         console.log(state.recipe);
     }
 };
 
@@ -87,22 +94,6 @@ window.addEventListener('hashchange', controlRecipe);
 //window.addEventListener('load', controlRecipe);
 //['hashchange', 'load'].forEach(event => window.addEventListener(event, controlRecipe));
 
-parseIngredients () {
-    const newIngredients = this.ingredients.map(el => {
-        const unitsLong = ['tablespoons', 'tablespoon', 'ounces', 'ounce', 'teaspoons', 'teaspoon ', 'cups', 'pounds'];
-        const unitsShort = ['tbsp', 'tbsp', 'oz', 'oz', 'tsp', 'tsp', 'cup', 'pound'];
-        // 1) Uniform units
-        let ingredient = el.toLowerCase();
-        unitsLong.forEach((unit, i) => {
-            ingredient = ingredient.replace(unit, unitsShort);
-        });
-        // 2)  Remove parentheses
-        ingredient = ingredient.replace(/ *\([^]*\) */g, ' ');
-        // 3)  Parse ingredients into count, unit and ingredient
-
-    });
-    this.ingredients = newIngredients; 
-}
 
 // edamam app ID d26d84fc
 // edamam app key 9e62db7f574bd8b3f3f8cd64b869ca06
