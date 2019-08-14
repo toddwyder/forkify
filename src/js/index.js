@@ -1,6 +1,6 @@
 import Search from './models/search';
 import * as searchView from './views/searchView';
-import * as recipeView from './views/searchView';
+import * as recipeView from './views/recipeView';
 import { elements, renderLoader, clearLoader } from './views/base'; 
 import Recipe from './models/recipe';
 
@@ -66,7 +66,8 @@ const controlRecipe = () => {
         
     if (id) {
         // Prepare UI for changes
-
+        recipeView.clearRecipe();  
+        renderLoader(elements.recipe);
 
         // Get recipe data and parse ingredients
         
@@ -85,7 +86,8 @@ const controlRecipe = () => {
         // Calculate servings and time
 
         // Render Recipe
-         console.log(state.recipe);
+         clearLoader();
+         recipeView.renderRecipe(state.recipe);
     }
 };
 
