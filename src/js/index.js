@@ -66,8 +66,11 @@ const controlRecipe = () => {
         
     if (id) {
         // Prepare UI for changes
-        recipeView.clearRecipe();  
+        recipeView.clearRecipe();   
         renderLoader(elements.recipe);
+
+        // Hightlight selected search item
+        if (state.search) searchView.highlightSelected(id);
 
         // Get recipe data and parse ingredients
         

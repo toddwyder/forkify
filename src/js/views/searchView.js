@@ -11,20 +11,30 @@ export const clearResults = () => {
   elements.searchResPages.innerHTML = ' '; 
 };
 
-export const limitRecipeTitle = (title, limit = 17) => {
-  const newTitle = [];
-  if (title.length > limit) {
-    title.split(' ').reduce((acc, cur) => {
-      if (acc + cur.length <= limit) {
-        newTitle.push(cur);
-      }
-      return acc + cur.length;
-    }, 0);
+export const highlightSelected = id => {
+  const resultsArr = Array.from(document.querySelectorAll(".results__link"));
+  resultsArr.forEach(el => {
+    el.classList.remove("results__link--active");
+  });
+  document
+    .querySelector(`.results__link[href*="${id}"]`)
+    .classList.add("results__link--active");
+};
 
-    // return the result
-    return `${newTitle.join(' ')} ...`;
-  }
-  return title;
+export const limitRecipeTitle = (title, limit = 17) => {
+    const newTitle = [];
+    if (title.length > limit) {
+        title.split(' ').reduce((acc, cur) => {
+            if (acc + cur.length <= limit) {
+                newTitle.push(cur);
+            }
+            return acc + cur.length;
+        }, 0);
+
+        // return the result
+        return `${newTitle.join(' ')} ...`;
+    }
+    return title;
 }
 
 const renderRecipe = hit => {
